@@ -30,9 +30,7 @@ class LogInViewController: UIViewController {
         login.placeholder = "phone/email"
         login.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
         login.leftViewMode = .always
-    
         login.layer.cornerRadius = 10
-
         login.backgroundColor = .systemGray6
     
         login.translatesAutoresizingMaskIntoConstraints = false
@@ -49,9 +47,7 @@ class LogInViewController: UIViewController {
         password.placeholder = "Password"
         password.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
         password.leftViewMode = .always
-        
         password.layer.cornerRadius = 10
-
         password.backgroundColor = .systemGray6
         
         password.translatesAutoresizingMaskIntoConstraints = false
@@ -72,7 +68,6 @@ class LogInViewController: UIViewController {
         loginPasswordStack.axis = .vertical
         loginPasswordStack.spacing = 0
         loginPasswordStack.distribution = .fillProportionally
-        
         loginPasswordStack.addArrangedSubview(loginTextField)
         loginPasswordStack.addArrangedSubview(spacerForStackView)
         loginPasswordStack.addArrangedSubview(passwordTextField)
@@ -80,7 +75,6 @@ class LogInViewController: UIViewController {
         spacerForStackView.widthAnchor.constraint(equalTo: loginPasswordStack.widthAnchor, multiplier: 1).isActive = true
 
         loginPasswordStack.backgroundColor = .systemGray6
-        
         loginPasswordStack.layer.borderColor = UIColor.lightGray.cgColor
         loginPasswordStack.layer.borderWidth = 0.5
         loginPasswordStack.layer.cornerRadius = 10
@@ -92,7 +86,6 @@ class LogInViewController: UIViewController {
     private lazy var logInButton: UIButton  = {
         let button = UIButton(type: .system)
         button.setTitle("Log In", for: .normal)
-        //MARK: - 12.
         button.setBackgroundImage(#imageLiteral(resourceName: "blue_pixel"), for: .normal)
         button.setTitleColor(.white, for: .normal)
         button.setTitleColor(.darkGray, for: .selected)
@@ -154,22 +147,23 @@ class LogInViewController: UIViewController {
 
         view.addSubview(scrollView)
         scrollView.addSubview(containerView)
+        
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         containerView.translatesAutoresizingMaskIntoConstraints = false
         
-        containerView.addSubviews(logoImageView,loginAndPasswordStackView, logInButton)
+        containerView.addSubviews(logoImageView, loginAndPasswordStackView, logInButton)
         
         let constraints = [
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
             scrollView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor),
             
             containerView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            containerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             containerView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             containerView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            containerView.bottomAnchor.constraint(equalTo: logInButton.bottomAnchor),
             containerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
             logoImageView.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 120),
@@ -186,8 +180,11 @@ class LogInViewController: UIViewController {
             logInButton.heightAnchor.constraint(equalToConstant: 50),
             logInButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 16),
             logInButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -16),
-            logInButton.bottomAnchor.constraint(equalTo: loginAndPasswordStackView.bottomAnchor, constant: 66)
+            logInButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 0)
+            
         ]
+        
+        
         
         NSLayoutConstraint.activate(constraints)
     }
@@ -197,4 +194,6 @@ extension UIView {
     func addSubviews(_ views: UIView...) {
         views.forEach { addSubview($0) }
     }
+    
+ 
 }

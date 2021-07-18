@@ -24,7 +24,7 @@ class ProfileHeaderView: UIView {
     
     @IBOutlet weak var avatarImageView: UIImageView! {
         didSet {
-            //let avatarImageView = UIImageView()
+            
             avatarImageView.contentMode = .scaleAspectFill
             avatarImageView.image = #imageLiteral(resourceName: "ava")
             avatarImageView.clipsToBounds = true
@@ -38,12 +38,14 @@ class ProfileHeaderView: UIView {
     
     @IBOutlet weak var statusTextField: UITextField! {
         didSet {
-            statusTextField.placeholder = "something to status"
+            statusTextField.text = "something to status"
             statusTextField.layer.cornerRadius = 12
             statusTextField.layer.borderWidth = 1
             statusTextField.layer.borderColor = UIColor.black.cgColor
             statusTextField.backgroundColor = .white
             statusTextField.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+            statusTextField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 40))
+            statusTextField.leftViewMode = .always
         }
     }
 
@@ -54,7 +56,7 @@ class ProfileHeaderView: UIView {
             setStatusButton.addTarget(self, action: #selector(tap), for: .touchUpInside)
             setStatusButton.layer.cornerRadius = 4
             setStatusButton.layer.shadowColor = UIColor.black.cgColor
-            setStatusButton.layer.shadowOffset = CGSize(width: 0, height: 4)
+            setStatusButton.layer.shadowOffset = CGSize(width: 4, height: 4)
             setStatusButton.layer.shadowRadius = 4
             setStatusButton.layer.shadowOpacity = 0.7
         }
